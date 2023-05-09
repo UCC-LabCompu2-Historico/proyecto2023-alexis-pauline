@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego Memory</title>
+    <meta content="Pauline FISCUS, Alexis GUFFLET" name="autors">
+    <meta content="Juego Memory" name="description">
+    <meta content="juego, reglas, memory" name="palabras-principales">
+    <link rel="stylesheet" href="miEstilo.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"
+          rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <img src="images/logo.png" alt="LogoJuego" class="logo-img">
+        <h1 class="nombreJuego">JUEGO MEMORY</h1>
+    </div>
+    <div>
+        <h2 class="autors">Creado por los franceses</h2>
+    </div>
+</header>
+
+
+<section class="section-2">
+    <div>
+            <canvas id="canvas" width="300" height="300"></canvas>
+            <script>
+                const canvas = document.getElementById('canvasEjercicio');
+                const ctx = canvas.getContext('2d');
+            </script>
+    </div>
+    <div>
+            Reloj: 00:00 <br>
+            Turno: 0
+    </div>
+    <div>
+
+        <button id="menu">
+            <a href="index.html">
+                <img src="images/menu.png" alt="LogoMenu">
+                Menu
+            </a>
+        </button>
+
+    </div>
+
+</section>
+
+</body>
+</html>

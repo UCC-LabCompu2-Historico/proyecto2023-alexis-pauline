@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    min-height: 30px;
+    background-color: #63c8ef;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.1%; /*margin de los elementos guardados en a la banner*/
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 30px;
+    margin-right: 5px; /*margin del espacio a la derecha del logo*/
+}
+
+h1 {
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 100%;
+}
+
+h2 {
+    font-family: sans-serif;
+    font-size: 10px;
+    font-weight: 100;
+    margin-right: 5px
+}
+
+h3 {
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+h4 {
+    font-family: sans-serif;
+    font-weight: 50;
+}
+
+p {
+    text-align: justify;
+}
+section {
+    width: 30em;
+    padding: 3em 3em;
+    background-color: #ffffff;
+    position: absolute;
+    transform: translate(-50%, 0%);
+    left: 50%;
+    border-radius: 0.7em;
+    box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
+}
+
+.div-2 img {
+    height: 60px;
+    border-radius: 50%;
+}
+
+.logo-img2 { /*centrer le logo sous menu*/
+    display: block;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.div-1 {
+    text-align: center;
+    padding: 0.01em;
+    background-color: #9d9d9d;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+.grid-item {
+    text-align: center;
+}
+
+button {
+    border: none;
+    border-radius: 0.3em;
+    padding: 1em 1.5em;
+    cursor: pointer;
+    display: flex;
+    margin: 2em auto 2em auto;
+}
+
+button img {
+    height: 20px;
+    margin-right: 5px;
+}
+
+canvas {
+    border: 5px solid #63c8ef;
+    margin-top: 3em;
+}
+
+section.section-2 {
+    align-items: center;
+    text-align: center;
+    padding: 0.1%;
+}
+
+#start{
+    border: 2px solid #49a218;
+}
+
+#menu{
+    border: 2px solid #000000;
+}
+
+a:link {
+    color: #293e94;
+}
+
+a:active {
+    color: #00ffd9;
+}
