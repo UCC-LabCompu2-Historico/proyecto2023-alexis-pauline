@@ -8,8 +8,39 @@ header {
     background-color: #63c8ef;
     justify-content: space-between;
     align-items: center;
-    padding: 0.1%; /*margin de los elementos guardados en a la banner*/
+    padding: 0.1%;
 }
+
+footer {
+    text-align:center;
+    padding: 5px;
+    background-color: #c2c2c2;
+    font-size:0.05;
+    font-family: 'Roboto', sans-serif;
+}
+
+section.section-1 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 30em;
+    padding: 3em 3em;
+    background-color: #ffffff;
+    border-radius: 0.7em;
+    box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
+}
+
+section.section-2 {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    padding: 3em 3em;
+    background-color: #ffffff;
+    border-radius: 0.7em;
+    box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
+}
+
 
 .logo {
     display: flex;
@@ -47,16 +78,6 @@ h4 {
 
 p {
     text-align: justify;
-}
-section {
-    width: 30em;
-    padding: 3em 3em;
-    background-color: #ffffff;
-    position: absolute;
-    transform: translate(-50%, 0%);
-    left: 50%;
-    border-radius: 0.7em;
-    box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
 }
 
 .div-2 img {
@@ -103,14 +124,10 @@ button img {
 }
 
 canvas {
-    border: 5px solid #63c8ef;
-    margin-top: 3em;
-}
 
-section.section-2 {
-    align-items: center;
-    text-align: center;
-    padding: 0.1%;
+    position: center;
+    border: 5px solid #63c8ef;
+    margin: auto, auto, auto, auto;
 }
 
 #start{
@@ -128,3 +145,5 @@ a:link {
 a:active {
     color: #00ffd9;
 }
+
+

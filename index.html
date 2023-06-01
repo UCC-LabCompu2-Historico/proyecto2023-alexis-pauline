@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Juego Memory</title>
@@ -7,10 +8,11 @@
     <meta content="Juego Memory" name="description">
     <meta content="juego, reglas, memory" name="palabras-principales">
     <link rel="stylesheet" href="miEstilo.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/logo.png">
+    <script type="text/javascript" src="script.js"></script>
 </head>
+
 <body>
 <header>
     <div class="logo">
@@ -23,25 +25,20 @@
 </header>
 
 <section class="section-1">
-
     <div class="div-1">
         <h3 class="menu">Menu</h3>
     </div>
-
     <div class="div-2">
         <img src="images/logo.png" alt="LogoJuego2" class="logo-img2">
         <h4 class="reglas">Reglas:</h4>
         <p> Da la vuelta a 2 cartas. Si son iguales, se fijan y puedes seguir tu turno. Sino, se
             vuelven a esconder y toca otro turno. La partida se terminará cuando estén todas las parejas encontradas.
-            Cuidado, se te acaba el tiempo.
-        </p>
+            Cuidado, se te acaba el tiempo. </p>
         <h4 class="datos">Datos:</h4>
-        <p>
-            <label for="nombre"> Nombre </label>
-            <input type="text" id="nombre" placeholder="Ingrese su nombre" name="nombre">
-        </p>
+        <p id="messageErreur" style="display: none; color: red;">Ingrese su nombre!</p>
+        <label for="nomDuChamp"> Nombre </label>
+            <input type="text" id="nomDuChamp" name="nomDuChamp" placeholder="Ingrese su nombre">
         <h4 class="tema">Tema:</h4>
-
         <div class="grid-container">
             <div class="grid-item">
                 <img src="images/formas/4.png" alt="LogoJuego" class="logo-img">
@@ -54,32 +51,33 @@
             </div>
             <div class="grid-item">
                 <label for="input_tema1"> Dificultad 1 </label>
-                <input type="radio" name="tema" id="input_tema1" value="" checked>
+                <input type="radio" name="tema" id="input_tema1" value="a" checked>
             </div>
             <div class="grid-item">
                 <label for="input_tema2"> Dificultad 2 </label>
-                <input type="radio" name="tema" id="input_tema2" value="">
+                <input type="radio" name="tema" id="input_tema2" value="b">
             </div>
             <div class="grid-item">
                 <label for="input_tema3"> Dificultad 3 </label>
-                <input type="radio" name="tema" id="input_tema3" value="">
+                <input type="radio" name="tema" id="input_tema3" value="c">
             </div>
         </div>
-
     </div>
 
     <div>
-        <button id="start">
-            <a href="reja.html">
-                <img src="images/start.png" alt="start">
-                Start
-            </a>
+        <button id="start" onclick="afficherMessageErreur();">
+            <img src="images/start.png" alt="start">
+            Start
         </button>
     </div>
-
-
 </section>
+
+    <footer>
+        Copyright © 2023 JuegoMemory
+    </footer>
+
 </body>
+
 </html>
 
 
