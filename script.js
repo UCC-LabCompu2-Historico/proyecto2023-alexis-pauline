@@ -1,50 +1,52 @@
 /**
- •	 * Descripción de que hace la función
- •	 * @method afficherMessageErreur
- •	 * @param {string} nomDuChamp - Explicación de que valor almacena ParámetroA
- •	 * @param {number} ParámetroB - Explicación de que valor almacena ParámetroB
- •	 * @return Valor que retorna
- •	 */
+ •     * Descripción de que hace la función
+ •     * @method afficherMessageErreur
+ •     * @param {string} nomDuChamp - Explicación de que valor almacena ParámetroA
+ •     * @param {number} ParámetroB - Explicación de que valor almacena ParámetroB
+ •     * @return Valor que retorna
+ •     */
 
-var val;
+let val = "";
+let nom = "";
 
 function afficherMessageErreur() {
-    var champ = document.getElementById("nomDuChamp");
-    var messageErreur = document.getElementById("messageErreur");
-    if (champ.value === "") {
+    nom = document.getElementById("nomDuChamp");
+    let messageErreur = document.getElementById("messageErreur");
+    if (nom.value === "") {
         messageErreur.style.display = "block";
-    }
-    else {
-        val = "b";
-        window.location.href ="reja.html";
+    } else {
+        val = document.querySelector('input[name="tema"]:checked');
+        window.location.href = "reja.html";
     }
 }
 
-
 /**
- •	 * Descripción de que hace la función
- •	 * @method Nombre de la función
- •	 * @param {string} ParámetroA - Explicación de que valor almacena ParámetroA
- •	 * @param {number} ParámetroB - Explicación de que valor almacena ParámetroB
- •	 * @return Valor que retorna
- •	 */
+ •     * Descripción de que hace la función
+ •     * @method Nombre de la función
+ •     * @param {string} ParámetroA - Explicación de que valor almacena ParámetroA
+ •     * @param {number} ParámetroB - Explicación de que valor almacena ParámetroB
+ •     * @return Valor que retorna
+ •     */
 
 function retourMenu() {
     window.location.href = "index.html";
 }
 
 /**
- •	 * Descripción de que hace la función
- •	 * @method Nombre de la función
- •	 * @param {string} ParámetroA - Explicación de que valor almacena ParámetroA
- •	 * @param {number} ParámetroB - Explicación de que valor almacena ParámetroB
- •	 * @return Valor que retorna
- •	 */
+ •     * Descripción de que hace la función
+ •     * @method Nombre de la función
+ •     * @param {string} ParámetroA - Explicación de que valor almacena ParámetroA
+ •     * @param {number} ParámetroB - Explicación de que valor almacena ParámetroB
+ •     * @return Valor que retorna
+ •     */
 
 function dessinerCanvas() {
-    // Variables globales
+
+    // Variables locales
     var canvas = document.getElementById('gameCanvas');
     var context = canvas.getContext('2d');
+    var nombreTours = document.getElementById("nombreTours");
+
     var cardWidth = 80;
     var cardHeight = 80;
     var cardSpacing = 20;
@@ -53,18 +55,22 @@ function dessinerCanvas() {
     var selectedCards = [];
     var matchedCards = [];
     var cards;
+    var turns = 0;
 
     if (val === "a") {
         cards = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐯', '🦁', '🐮', '🐷'];
-        }
-    else if (val === "b") {
+    } else if (val === "b") {
         cards = ['🔵', '🟠', '🟡', '🟢', '🔴', '🟣', '🟤', '⚫️', '⚪️', '🟠', '🔵', '🟢'];
-    }
-    else {
+    } else {
         cards = ['🍎', '🍓', '🍌', '🍊', '🍇', '🍏', '🍉', '🍐', '🍑', '🍒', '🍍', '🥝'];
     }
 
     var shuffledCards = shuffle(cards.concat(cards));
+
+    //chronomètre
+    var timerId; // Identifiant du chronomètre
+    var startTime; // Heure de départ du chronomètre
+    var elapsedTime = 0; // Temps écoulé depuis le démarrage du chronomètre
 
 // Mélange le tableau de cartes
     function shuffle(array) {
@@ -125,6 +131,9 @@ function dessinerCanvas() {
             drawBoard();
 
             if (selectedCards.length === 2) {
+                turns++;
+                nombreTours.textContent = turns.toString();
+
                 var card1 = shuffledCards[selectedCards[0]];
                 var card2 = shuffledCards[selectedCards[1]];
 
@@ -139,13 +148,14 @@ function dessinerCanvas() {
                     drawBoard();
 
                     if (matchedCards.length === shuffledCards.length) {
-                        alert('Félicitations ! Vous avez terminé le jeu !');
+                        clearInterval(timerId);
+                        alert('Félicitations ' + nom + '! \nVous avez terminé le jeu en ' + turns.toString() + ' tours.\n\nRejouez en changeant de thème!');
                     }
                 }, 1000);
+
             }
         }
     }
-
 
 // Ajoute un gestionnaire d'événement pour le clic sur le canvas
     canvas.addEventListener('click', handleClick);
@@ -153,9 +163,38 @@ function dessinerCanvas() {
 // Dessine le plateau de jeu initial
     drawBoard();
 
-    //window.location.href ="index.html";
-}
 
+
+
+// Fonction pour mettre à jour le chronomètre
+    function updateTimer() {
+        var timer = document.getElementById("timer");
+        var currentTime = new Date().getTime();
+        var deltaTime = currentTime - startTime + elapsedTime;
+
+        var hours = Math.floor(deltaTime / (1000 * 60 * 60));
+        var minutes = Math.floor((deltaTime % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((deltaTime % (1000 * 60)) / 1000);
+
+        timer.textContent = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
+
+    }
+
+// Fonction pour formater les chiffres du chronomètre avec un zéro devant si nécessaire
+    function formatTime(time) {
+        return time < 10 ? "0" + time : time;
+    }
+
+// Fonction d'activation automatique du chronomètre
+    function startAutomaticTimer() {
+        startTime = new Date().getTime();
+        timerId = setInterval(updateTimer, 1000);
+    }
+
+// Appel de la fonction d'activation automatique du chronomètre
+    startAutomaticTimer();
+
+}
 
 
 
