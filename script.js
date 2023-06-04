@@ -1,57 +1,49 @@
 /**
- •     * Descripción de que hace la función
+ •     * mostrar mensaje error y permite ir a la reja de juego
  •     * @method afficherMessageErreur
- •     * @param {string} nomDuChamp - Explicación de que valor almacena ParámetroA
- •     * @param {number} ParámetroB - Explicación de que valor almacena ParámetroB
- •     * @return Valor que retorna
+ •     * @return nada
  •     */
-
-let val = "";
-let nom = "";
-
 function afficherMessageErreur() {
-    nom = document.getElementById("nomDuChamp");
+    const nom = document.getElementById("nomDuChamp").value;
     let messageErreur = document.getElementById("messageErreur");
-    if (nom.value === "") {
+    if (nom === "") {
         messageErreur.style.display = "block";
     } else {
-        val = document.querySelector('input[name="tema"]:checked');
+        const val = document.querySelector('input[name="tema"]:checked').value;
+        localStorage.setItem("val", val);
+        localStorage.setItem("nom", nom);
         window.location.href = "reja.html";
     }
 }
 
 /**
- •     * Descripción de que hace la función
- •     * @method Nombre de la función
- •     * @param {string} ParámetroA - Explicación de que valor almacena ParámetroA
- •     * @param {number} ParámetroB - Explicación de que valor almacena ParámetroB
- •     * @return Valor que retorna
+ •     * Permite volver al menu
+ •     * @method retourMenu
+ •     * @return nada
  •     */
-
 function retourMenu() {
     window.location.href = "index.html";
 }
 
 /**
- •     * Descripción de que hace la función
- •     * @method Nombre de la función
- •     * @param {string} ParámetroA - Explicación de que valor almacena ParámetroA
- •     * @param {number} ParámetroB - Explicación de que valor almacena ParámetroB
- •     * @return Valor que retorna
+ •     *recuperar los valores val y name almacenados en el localStorage y asignarlos a las variables locales correspondientes.
+ •     * @method dessinerCanvas
+ •     * @return nada
  •     */
-
 function dessinerCanvas() {
+    const val = localStorage.getItem("val");
+    const nom = localStorage.getItem("nom");
 
     // Variables locales
     var canvas = document.getElementById('gameCanvas');
     var context = canvas.getContext('2d');
     var nombreTours = document.getElementById("nombreTours");
 
-    var cardWidth = 80;
-    var cardHeight = 80;
-    var cardSpacing = 20;
-    var numRows = 3;
-    var numCols = 8;
+    const cardWidth = 80;
+    const cardHeight = 80;
+    const cardSpacing = 20;
+    const numRows = 3;
+    const numCols = 8;
     var selectedCards = [];
     var matchedCards = [];
     var cards;
@@ -60,19 +52,25 @@ function dessinerCanvas() {
     if (val === "a") {
         cards = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐯', '🦁', '🐮', '🐷'];
     } else if (val === "b") {
-        cards = ['🔵', '🟠', '🟡', '🟢', '🔴', '🟣', '🟤', '⚫️', '⚪️', '🟠', '🔵', '🟢'];
+        cards = ['🔵',' 🟦 ', '🟨', '🟡', '🟥', '🔴', '🟤', '🟫️', '🟧', '🟠', '🟩 ', '🟢'];
     } else {
         cards = ['🍎', '🍓', '🍌', '🍊', '🍇', '🍏', '🍉', '🍐', '🍑', '🍒', '🍍', '🥝'];
     }
 
+    // mezcla un arreglo de cartas al concatenarlo consigo mismo y luego mezclar el arreglo resultante
     var shuffledCards = shuffle(cards.concat(cards));
 
-    //chronomètre
-    var timerId; // Identifiant du chronomètre
-    var startTime; // Heure de départ du chronomètre
-    var elapsedTime = 0; // Temps écoulé depuis le démarrage du chronomètre
+    //cronómetro
+    var timerId; // Identificador del cronómetro
+    var startTime; // Hora de inicio del cronómetro
+    var elapsedTime = 0; // Tiempo transcurrido desde el inicio del cronómetro
 
-// Mélange le tableau de cartes
+    /**
+     •     * Mezcla las cartas al asar
+     •     * @method  function shuffle
+     •     * @param {array} - cuadro que se mezclará
+     •     * @return Se devuelve el cuadro mixto.
+     •     */
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -83,11 +81,18 @@ function dessinerCanvas() {
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         }
-
         return array;
     }
 
-// Dessine une carte sur le canvas
+    /**
+     •     * Dibujar un mapa en el canvas
+     •     * @method drawCard
+     •     * @param {number} x - coordenada del lugar donde se dibujará el mapa
+     •     * @param {number} y - coordenadas del lugar donde se dibujará el mapa
+     •     * @param {number} value - representa el valor de la carta
+     •     * @param {boolean} visible - determina si la carta debe ser visible o no.
+     •     * @return nada
+     •     */
     function drawCard(x, y, value, visible) {
         context.fillStyle = visible ? '#fff' : '#000';
         context.fillRect(x, y, cardWidth, cardHeight);
@@ -98,7 +103,11 @@ function dessinerCanvas() {
         }
     }
 
-// Dessine le plateau de jeu
+    /**
+     •     * Dibuja el tablero de juego
+     •     * @method drawBoard
+     •     * @return nada
+     •     */
     function drawBoard() {
         context.clearRect(0, 0, canvas.width, canvas.height);
         for (var row = 0; row < numRows; row++) {
@@ -115,7 +124,12 @@ function dessinerCanvas() {
         }
     }
 
-// Gère le clic sur une carte
+    /**
+     •     * gestiona los clics  en el canva
+     •     * @method handleClick
+     •     * @param {MouseEvent} event - el objeto de evento generado cuando se hace clic
+     •     * @return nada
+     •     */
     function handleClick(event) {
         var rect = canvas.getBoundingClientRect();
         var x = event.clientX - rect.left;
@@ -149,24 +163,24 @@ function dessinerCanvas() {
 
                     if (matchedCards.length === shuffledCards.length) {
                         clearInterval(timerId);
-                        alert('Félicitations ' + nom + '! \nVous avez terminé le jeu en ' + turns.toString() + ' tours.\n\nRejouez en changeant de thème!');
+                        alert('Felicidades ' + nom + ' ! \nHas completado el juego en ' + turns.toString() + ' turnos.\n\nRepetición con otro tema!');
                     }
                 }, 1000);
-
             }
         }
     }
 
-// Ajoute un gestionnaire d'événement pour le clic sur le canvas
+// Añade un controlador de eventos para hacer clic en el canva
     canvas.addEventListener('click', handleClick);
 
-// Dessine le plateau de jeu initial
+// Dibuja el tablero de juego inicial
     drawBoard();
 
-
-
-
-// Fonction pour mettre à jour le chronomètre
+    /**
+     •     * Dactualiza la visualización del cronómetro en tiempo real en la página web
+     •     * @method updateTimer
+     •     * @return no devuelve nada pero actualiza la pantalla del cronómetro
+     •     */
     function updateTimer() {
         var timer = document.getElementById("timer");
         var currentTime = new Date().getTime();
@@ -177,25 +191,28 @@ function dessinerCanvas() {
         var seconds = Math.floor((deltaTime % (1000 * 60)) / 1000);
 
         timer.textContent = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
-
     }
 
-// Fonction pour formater les chiffres du chronomètre avec un zéro devant si nécessaire
+    /**
+     •     * formatear los dígitos del cronómetro con un cero a la izquierda si es necesario
+     •     * @method formatTime
+     •     * @param {number} time - Explicación de que valor almacena ParámetroA
+     •     * @return string
+     •     */
     function formatTime(time) {
         return time < 10 ? "0" + time : time;
     }
 
-// Fonction d'activation automatique du chronomètre
+    /**
+     •     * activación automática del cronómetro
+     •     * @method startAutomaticTimer
+     •     * @return nada
+     •     */
     function startAutomaticTimer() {
         startTime = new Date().getTime();
         timerId = setInterval(updateTimer, 1000);
     }
 
-// Appel de la fonction d'activation automatique du chronomètre
+// Activación de la función de cronómetro automático
     startAutomaticTimer();
-
 }
-
-
-
-

@@ -13,20 +13,20 @@ Esta pagina corresponde al Juego Memory.
 ### Requisitos del Primer Parcial
 
 #### Sobre el Repositorio
-- [X] El proyecto debe estar subido al repositorio adecuado "Proyecto2023-ApellidoAlumno1-ApellidoAlumno2"
+- [ ] El proyecto debe estar subido al repositorio adecuado "Proyecto2023-ApellidoAlumno1-ApellidoAlumno2"
 - [X] Modificar el Readme.MD y colocar información del proyecto/página (mínimamente: título del proyecto, autores con nombre y apellido, link de gh-pages, contenido de la página,  listado de tecnologías usadas, etc)
 - [X] La estructura del proyecto debe ser adecuada (crear una carpeta para las imágenes, otra para los sketch/mockups/Wireframes). Es importante que contenga SKETCH y MOCKUP/WIREFRAME (debe estar en formato: PDF, PNG o JPG).
-- [X] El código debe estar pusheado en el repositorio (emplear gh-pages ó publicar la página desde el main), y no debe haber diferencias entre **main** y **gh-pages** (verificar de realizar el Merge).
-- [X] Publicar la Web empleando GitHubPages
-- [X] El repositorio no debe contener archivos innecesarios (no debe contener .idea o .vsc, en todo caso emplear **.gitignore**)
+- [ ] El código debe estar pusheado en el repositorio (emplear gh-pages ó publicar la página desde el main), y no debe haber diferencias entre **main** y **gh-pages** (verificar de realizar el Merge).
+- [ ] Publicar la Web empleando GitHubPages
+- [ ] El repositorio no debe contener archivos innecesarios (no debe contener .idea o .vsc, en todo caso emplear **.gitignore**)
 
 #### Sobre el Proyecto General
 - [X] La página principal debe llamarse index
 - [X] Identar correctamente el código (en Webstorm Ctrl+Alt+L)
-- [X] No debe haber errores presentes (realizar *Code* > *Inspect Code* para verificar que no haya errores)
+- [ ] No debe haber errores presentes (realizar *Code* > *Inspect Code* para verificar que no haya errores)
 - [X] Se debe emplear algún favicon
 - [X] Emplear alguna fuente de google fonts o subir al proyecto alguna fuente externa
-- [X] Debe haber navegación entre todas las páginas
+- [ ] Debe haber navegación entre todas las páginas
 
 #### Sobre el HTML
 - [X] Todas las etiquetas deben estar en minúscula
@@ -46,8 +46,8 @@ Esta pagina corresponde al Juego Memory.
 
 #### Sobre el CSS
 - [X] El estilo de los elementos debe establecerse en un archivo CSS (prohibido poner el atributo style a los elementos o emplear estilos incrustados).
-- [X] El CSS debe contar mínimo con un tipo de cada forma (por Tag, por ID y por clase).
-- [X] Se debe emplear pseudoclase
+- [ ] El CSS debe contar mínimo con un tipo de cada forma (por Tag, por ID y por clase).
+- [ ] Se debe emplear pseudoclase
 - [X] No emplear !important
 
 #### Sobre Accesibilidad:
@@ -65,17 +65,17 @@ Esta pagina corresponde al Juego Memory.
 ## Requisitos del Segundo Parcial
 
 ### Sobre el proyecto general
-- [X] Todas las correcciones y mejoras solicitadas durante el primer parcial deben estar corregidas.
-- [X] No debe haber errores presentes en el código (realizar Code > Inspect Code para verificar que no haya errores)
-- [X] No debe haber errores JavaScripts presentes. (ver con F12 si hay errores)
+- [ ] Todas las correcciones y mejoras solicitadas durante el primer parcial deben estar corregidas.
+- [ ] No debe haber errores presentes en el código (realizar Code > Inspect Code para verificar que no haya errores)
+- [ ] No debe haber errores JavaScripts presentes. (ver con F12 si hay errores)
 
 ### Sobre la funcionalidad JavaScript
 Se debe agregar funcionalidad Js a la página HTML+CSS desarrollada
-- [X] Una función que compruebe si los valores ingresados son correctos, y si no lo son, que le indique al usuario por un alert, y que blanquee el contenido del campo.
-- [X] Una función que calcule algo en base a los valores ingresados por el usuario en los inputs.
-- [X] Una función que realice un dibujo sobre un canvas (debe ser representativo y acorde a los valores ingreados).
-- [X] El código Js debe estar en un archivo externo
-- [X] Se debe emplear var, let o const según corresponda para mayor eficiencia
+- [ ] Una función que compruebe si los valores ingresados son correctos, y si no lo son, que le indique al usuario por un alert, y que blanquee el contenido del campo.
+- [ ] Una función que calcule algo en base a los valores ingresados por el usuario en los inputs.
+- [ ] Una función que realice un dibujo sobre un canvas (debe ser representativo y acorde a los valores ingreados).
+- [ ] El código Js debe estar en un archivo externo
+- [ ] Se debe emplear var, let o const según corresponda para mayor eficiencia
 
 ### Sobre la documentación
 - [ ] TODAS las funciones javaScript deben estar comentadas adecuadamente. [JsDoc](https://jsdoc.app/about-getting-started.html)

@@ -15,7 +15,7 @@ footer {
     text-align:center;
     padding: 5px;
     background-color: #c2c2c2;
-    font-size:0.05;
+    font-size:small;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -30,8 +30,10 @@ section.section-1 {
 }
 
 section.section-2 {
-    display: flex;
+    display: grid;
     justify-content: center;
+    justify-items: center;
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
     width: 800px;
@@ -65,15 +67,19 @@ h2 {
     margin-right: 5px
 }
 
-h3 {
+h2 {
     font-family: sans-serif;
     font-size: 20px;
     font-weight: 600;
 }
 
-h4 {
+h3 {
     font-family: sans-serif;
     font-weight: 50;
+}
+
+h4 {
+    transform:scale(4);
 }
 
 p {
@@ -85,7 +91,7 @@ p {
     border-radius: 50%;
 }
 
-.logo-img2 { /*centrer le logo sous menu*/
+.logo-img2 { /*centrar el logo debajo del menu*/
     display: block;
     margin-top: 1em;
     margin-left: auto;
@@ -124,10 +130,8 @@ button img {
 }
 
 canvas {
-
-    position: center;
     border: 5px solid #63c8ef;
-    margin: auto, auto, auto, auto;
+    margin: auto;
 }
 
 #start{
@@ -138,8 +142,13 @@ canvas {
     border: 2px solid #000000;
 }
 
+#myLink{
+    font-size:medium;
+    font-family: 'Roboto', sans-serif;
+}
+
 a:link {
-    color: #293e94;
+    color: #0032fd;
 }
 
 a:active {
