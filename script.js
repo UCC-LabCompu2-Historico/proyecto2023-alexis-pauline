@@ -1,7 +1,6 @@
 /**
  •     * mostrar mensaje error y permite ir a la reja de juego
  •     * @method afficherMessageErreur
- •     * @return nada
  •     */
 function afficherMessageErreur() {
     const nom = document.getElementById("nomDuChamp").value;
@@ -19,35 +18,33 @@ function afficherMessageErreur() {
 /**
  •     * Permite volver al menu
  •     * @method retourMenu
- •     * @return nada
  •     */
 function retourMenu() {
     window.location.href = "index.html";
 }
 
 /**
- •     *recuperar los valores val y name almacenados en el localStorage y asignarlos a las variables locales correspondientes.
+ •     *recuperar los valores val y name almacenados en el localStorage y asignarlos a las letiables locales correspondientes.
  •     * @method dessinerCanvas
- •     * @return nada
  •     */
 function dessinerCanvas() {
     const val = localStorage.getItem("val");
     const nom = localStorage.getItem("nom");
 
-    // Variables locales
-    var canvas = document.getElementById('gameCanvas');
-    var context = canvas.getContext('2d');
-    var nombreTours = document.getElementById("nombreTours");
+    // letiables locales
+    let canvas = document.getElementById('gameCanvas');
+    let context = canvas.getContext('2d');
+    let nombreTours = document.getElementById("nombreTours");
 
     const cardWidth = 80;
     const cardHeight = 80;
     const cardSpacing = 20;
     const numRows = 3;
     const numCols = 8;
-    var selectedCards = [];
-    var matchedCards = [];
-    var cards;
-    var turns = 0;
+    let selectedCards = [];
+    let matchedCards = [];
+    let cards;
+    let turns = 0;
 
     if (val === "a") {
         cards = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐯', '🦁', '🐮', '🐷'];
@@ -58,21 +55,21 @@ function dessinerCanvas() {
     }
 
     // mezcla un arreglo de cartas al concatenarlo consigo mismo y luego mezclar el arreglo resultante
-    var shuffledCards = shuffle(cards.concat(cards));
+    let shuffledCards = shuffle(cards.concat(cards));
 
     //cronómetro
-    var timerId; // Identificador del cronómetro
-    var startTime; // Hora de inicio del cronómetro
-    var elapsedTime = 0; // Tiempo transcurrido desde el inicio del cronómetro
+    let timerId; // Identificador del cronómetro
+    let startTime; // Hora de inicio del cronómetro
+    let elapsedTime = 0; // Tiempo transcurrido desde el inicio del cronómetro
 
     /**
      •     * Mezcla las cartas al asar
      •     * @method  function shuffle
      •     * @param {array} - cuadro que se mezclará
-     •     * @return Se devuelve el cuadro mixto.
+     •     * @return Se devuelve el cuadro mixto
      •     */
     function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
+        let currentIndex = array.length, temporaryValue, randomIndex;
 
         while (currentIndex !== 0) {
             randomIndex = Math.floor(Math.random() * currentIndex);
@@ -90,8 +87,7 @@ function dessinerCanvas() {
      •     * @param {number} x - coordenada del lugar donde se dibujará el mapa
      •     * @param {number} y - coordenadas del lugar donde se dibujará el mapa
      •     * @param {number} value - representa el valor de la carta
-     •     * @param {boolean} visible - determina si la carta debe ser visible o no.
-     •     * @return nada
+     •     * @param {boolean} visible - determina si la carta debe ser visible o no
      •     */
     function drawCard(x, y, value, visible) {
         context.fillStyle = visible ? '#fff' : '#000';
@@ -106,18 +102,17 @@ function dessinerCanvas() {
     /**
      •     * Dibuja el tablero de juego
      •     * @method drawBoard
-     •     * @return nada
      •     */
     function drawBoard() {
         context.clearRect(0, 0, canvas.width, canvas.height);
-        for (var row = 0; row < numRows; row++) {
-            for (var col = 0; col < numCols; col++) {
-                var index = row * numCols + col;
-                var x = col * (cardWidth + cardSpacing) + cardSpacing;
-                var y = row * (cardHeight + cardSpacing) + cardSpacing;
+        for (let row = 0; row < numRows; row++) {
+            for (let col = 0; col < numCols; col++) {
+                let index = row * numCols + col;
+                let x = col * (cardWidth + cardSpacing) + cardSpacing;
+                let y = row * (cardHeight + cardSpacing) + cardSpacing;
 
-                var card = shuffledCards[index];
-                var visible = selectedCards.includes(index) || matchedCards.includes(index);
+                let card = shuffledCards[index];
+                let visible = selectedCards.includes(index) || matchedCards.includes(index);
 
                 drawCard(x, y, card, visible);
             }
@@ -128,17 +123,16 @@ function dessinerCanvas() {
      •     * gestiona los clics  en el canva
      •     * @method handleClick
      •     * @param {MouseEvent} event - el objeto de evento generado cuando se hace clic
-     •     * @return nada
      •     */
     function handleClick(event) {
-        var rect = canvas.getBoundingClientRect();
-        var x = event.clientX - rect.left;
-        var y = event.clientY - rect.top;
+        let rect = canvas.getBoundingClientRect();
+        let x = event.clientX - rect.left;
+        let y = event.clientY - rect.top;
 
-        var col = Math.floor(x / (cardWidth + cardSpacing));
-        var row = Math.floor(y / (cardHeight + cardSpacing));
+        let col = Math.floor(x / (cardWidth + cardSpacing));
+        let row = Math.floor(y / (cardHeight + cardSpacing));
 
-        var index = row * numCols + col;
+        let index = row * numCols + col;
 
         if (selectedCards.length < 2 && !selectedCards.includes(index) && !matchedCards.includes(index)) {
             selectedCards.push(index);
@@ -148,8 +142,8 @@ function dessinerCanvas() {
                 turns++;
                 nombreTours.textContent = turns.toString();
 
-                var card1 = shuffledCards[selectedCards[0]];
-                var card2 = shuffledCards[selectedCards[1]];
+                let card1 = shuffledCards[selectedCards[0]];
+                let card2 = shuffledCards[selectedCards[1]];
 
                 if (card1 === card2) {
                     matchedCards.push(selectedCards[0]);
@@ -182,13 +176,13 @@ function dessinerCanvas() {
      •     * @return no devuelve nada pero actualiza la pantalla del cronómetro
      •     */
     function updateTimer() {
-        var timer = document.getElementById("timer");
-        var currentTime = new Date().getTime();
-        var deltaTime = currentTime - startTime + elapsedTime;
+        let timer = document.getElementById("timer");
+        let currentTime = new Date().getTime();
+        let deltaTime = currentTime - startTime + elapsedTime;
 
-        var hours = Math.floor(deltaTime / (1000 * 60 * 60));
-        var minutes = Math.floor((deltaTime % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((deltaTime % (1000 * 60)) / 1000);
+        let hours = Math.floor(deltaTime / (1000 * 60 * 60));
+        let minutes = Math.floor((deltaTime % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((deltaTime % (1000 * 60)) / 1000);
 
         timer.textContent = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
     }
@@ -206,7 +200,6 @@ function dessinerCanvas() {
     /**
      •     * activación automática del cronómetro
      •     * @method startAutomaticTimer
-     •     * @return nada
      •     */
     function startAutomaticTimer() {
         startTime = new Date().getTime();
