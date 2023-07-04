@@ -1,32 +1,43 @@
-/**
- •     * mostrar mensaje error y permite ir a la reja de juego
- •     * @method afficherMessageErreur
- •     */
-function afficherMessageErreur() {
-    const nom = document.getElementById("nomDuChamp").value;
-    let messageErreur = document.getElementById("messageErreur");
-    if (nom === "") {
-        messageErreur.style.display = "block";
-    } else {
-        const val = document.querySelector('input[name="tema"]:checked').value;
-        localStorage.setItem("val", val);
-        localStorage.setItem("nom", nom);
-        window.location.href = "reja.html";
-    }
-}
+ /**
+ * mostrar mensaje error y permite ir a la reja de juego
+ * @method afficherMessageErreur
+ */
+ function afficherMessageErreur() {
+     let nom = document.getElementById("nomDuChamp");
+     let messageErreur = document.getElementById("messageErreur");
+
+     nom.addEventListener("input", function() {
+         if (nom.value === "" || !isNaN(nom.value)) {
+             messageErreur.style.display = "block";
+         } else {
+             messageErreur.style.display = "none";
+         }
+     });
+
+     if (nom.value === "" || !isNaN(nom.value)) {
+         messageErreur.style.display = "block";
+     } else {
+         messageErreur.style.display = "none";
+         const val = document.querySelector('input[name="tema"]:checked').value;
+         localStorage.setItem("val", val);
+         localStorage.setItem("nom", nom.value);
+         window.location.href = "reja.html";
+     }
+ }
+
 
 /**
- •     * Permite volver al menu
- •     * @method retourMenu
- •     */
+ * Permite volver al menu
+ * @method retourMenu
+ */
 function retourMenu() {
     window.location.href = "index.html";
 }
 
 /**
- •     *recuperar los valores val y name almacenados en el localStorage y asignarlos a las letiables locales correspondientes.
- •     * @method dessinerCanvas
- •     */
+ *recuperar los valores val y name almacenados en el localStorage y asignarlos a las letiables locales correspondientes.
+ * @method dessinerCanvas
+ */
 function dessinerCanvas() {
     const val = localStorage.getItem("val");
     const nom = localStorage.getItem("nom");
@@ -63,11 +74,11 @@ function dessinerCanvas() {
     let elapsedTime = 0; // Tiempo transcurrido desde el inicio del cronómetro
 
     /**
-     •     * Mezcla las cartas al asar
-     •     * @method  function shuffle
-     •     * @param {array} - cuadro que se mezclará
-     •     * @return Se devuelve el cuadro mixto
-     •     */
+     * Mezcla las cartas al asar
+     * @method  function shuffle
+     * @param {array} array - cuadro que se mezclará
+     * @return Se devuelve el cuadro mixto
+     */
     function shuffle(array) {
         let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -82,13 +93,13 @@ function dessinerCanvas() {
     }
 
     /**
-     •     * Dibujar un mapa en el canvas
-     •     * @method drawCard
-     •     * @param {number} x - coordenada del lugar donde se dibujará el mapa
-     •     * @param {number} y - coordenadas del lugar donde se dibujará el mapa
-     •     * @param {number} value - representa el valor de la carta
-     •     * @param {boolean} visible - determina si la carta debe ser visible o no
-     •     */
+ * Dibujar un mapa en el canvas
+ * @method drawCard
+ * @param {number} x - coordenada del lugar donde se dibujará el mapa
+ * @param {number} y - coordenadas del lugar donde se dibujará el mapa
+ * @param {string} value - representa el valor de la carta
+ * @param {boolean} visible - determina si la carta debe ser visible o no
+ */
     function drawCard(x, y, value, visible) {
         context.fillStyle = visible ? '#fff' : '#000';
         context.fillRect(x, y, cardWidth, cardHeight);
@@ -100,9 +111,9 @@ function dessinerCanvas() {
     }
 
     /**
-     •     * Dibuja el tablero de juego
-     •     * @method drawBoard
-     •     */
+ * Dibuja el tablero de juego
+ * @method drawBoard
+ */
     function drawBoard() {
         context.clearRect(0, 0, canvas.width, canvas.height);
         for (let row = 0; row < numRows; row++) {
@@ -120,10 +131,10 @@ function dessinerCanvas() {
     }
 
     /**
-     •     * gestiona los clics  en el canva
-     •     * @method handleClick
-     •     * @param {MouseEvent} event - el objeto de evento generado cuando se hace clic
-     •     */
+ * gestiona los clics  en el canva
+ * @method handleClick
+ * @param {MouseEvent} event - el objeto de evento generado cuando se hace clic
+ */
     function handleClick(event) {
         let rect = canvas.getBoundingClientRect();
         let x = event.clientX - rect.left;
@@ -171,10 +182,10 @@ function dessinerCanvas() {
     drawBoard();
 
     /**
-     •     * Dactualiza la visualización del cronómetro en tiempo real en la página web
-     •     * @method updateTimer
-     •     * @return no devuelve nada pero actualiza la pantalla del cronómetro
-     •     */
+ * Dactualiza la visualización del cronómetro en tiempo real en la página web
+ * @method updateTimer
+ * @return no devuelve nada pero actualiza la pantalla del cronómetro
+ */
     function updateTimer() {
         let timer = document.getElementById("timer");
         let currentTime = new Date().getTime();
@@ -188,19 +199,19 @@ function dessinerCanvas() {
     }
 
     /**
-     •     * formatear los dígitos del cronómetro con un cero a la izquierda si es necesario
-     •     * @method formatTime
-     •     * @param {number} time - Explicación de que valor almacena ParámetroA
-     •     * @return string
-     •     */
+     * formatear los dígitos del cronómetro con un cero a la izquierda si es necesario
+     * @method formatTime
+     * @param {number} time - Explicación de que valor almacena ParámetroA
+     * @return string
+     */
     function formatTime(time) {
         return time < 10 ? "0" + time : time;
     }
 
     /**
-     •     * activación automática del cronómetro
-     •     * @method startAutomaticTimer
-     •     */
+    * activación automática del cronómetro
+    * @method startAutomaticTimer
+    */
     function startAutomaticTimer() {
         startTime = new Date().getTime();
         timerId = setInterval(updateTimer, 1000);
