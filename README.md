@@ -1,6 +1,6 @@
 # Juego Memory
 Esta pagina corresponde al Juego Memory : 
-https://ucc-labcompu2.github.io/proyecto2023-alexis-pauline/
+https://ucc-labcompu2-historico.github.io/proyecto2023-alexis-pauline/
 
 ## Autores
 * Pauline FISCUS
